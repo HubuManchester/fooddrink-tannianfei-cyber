@@ -2,116 +2,111 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodDrinkApp.AddItemPage"
-             Title="Add Record">
+             Title="New Entry"
+             BackgroundColor="{AppThemeBinding Light=#F8F9FA, Dark=#0D0D0D}">
+
+    <ContentPage.Resources>
+        <Color x:Key="PrimaryColor">#7B2CBF</Color>
+        <Color x:Key="AccentColor">#FF6B6B</Color>
+    </ContentPage.Resources>
+
     <ScrollView>
-        <ScrollView.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                <GradientStop Color="{AppThemeBinding Light=#FFF1DA, Dark=#130F0C}" Offset="0.0" />
-                <GradientStop Color="{AppThemeBinding Light=#FFF9EF, Dark=#0F1711}" Offset="1.0" />
-            </LinearGradientBrush>
-        </ScrollView.Background>
-        <VerticalStackLayout Padding="22" Spacing="16">
-            <Border StrokeThickness="0" Padding="18" BackgroundColor="{AppThemeBinding Light=#FFFDF8, Dark=#1A1712}">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="8" />
-                </Border.StrokeShape>
-                <Grid RowDefinitions="Auto,Auto" RowSpacing="6">
-                    <Label Text="Add food or drink"
-                           FontSize="28"
-                           FontAttributes="Bold"
-                           TextColor="{AppThemeBinding Light=#3A2518, Dark=#FFF2DF}"
-                           SemanticProperties.HeadingLevel="Level1" />
-                    <Label Grid.Row="1"
-                           Text="Record the full details of a meal worth remembering."
-                           FontSize="15"
-                           TextColor="{AppThemeBinding Light=#8B6D55, Dark=#D8C4AC}" />
-                </Grid>
-            </Border>
+        <VerticalStackLayout Padding="20" Spacing="16">
 
-            <Border StrokeThickness="1"
-                    Stroke="{AppThemeBinding Light=#F0D6B8, Dark=#3E3023}"
-                    BackgroundColor="{AppThemeBinding Light=#FFFFFA, Dark=#1A1712}"
-                    Padding="16">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="8" />
-                </Border.StrokeShape>
-                <VerticalStackLayout Spacing="14">
-                    <Label Text="Basic information" FontSize="16" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#D9472B, Dark=#FF9C7B}" />
-                    <Entry x:Name="NameEntry"
-                           Placeholder="Name"
-                           SemanticProperties.Hint="Required food or drink name" />
-                    <Picker x:Name="CategoryPicker"
-                            Title="Category"
-                            SemanticProperties.Hint="Required category">
-                        <Picker.Items>
-                            <x:String>Breakfast</x:String>
-                            <x:String>Lunch</x:String>
-                            <x:String>Dinner</x:String>
-                            <x:String>Snack</x:String>
-                            <x:String>Drink</x:String>
-                        </Picker.Items>
-                    </Picker>
-                    <Editor x:Name="DescriptionEditor"
-                            Placeholder="Description, ingredients, flavour, or context"
-                            AutoSize="TextChanges"
-                            HeightRequest="104"
-                            SemanticProperties.Hint="Describe this food or drink" />
-                </VerticalStackLayout>
-            </Border>
+            <Label Text="Add New Food"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource PrimaryColor}" />
 
-            <Border StrokeThickness="1"
-                    Stroke="{AppThemeBinding Light=#F0D6B8, Dark=#3E3023}"
-                    BackgroundColor="{AppThemeBinding Light=#FFFFFA, Dark=#1A1712}"
-                    Padding="16">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="8" />
-                </Border.StrokeShape>
-                <VerticalStackLayout Spacing="14">
-                    <Label Text="Nutrition data" FontSize="16" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#2F7A4F, Dark=#8CE6A1}" />
-                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
-                        <Entry x:Name="CaloriesEntry"
-                               Placeholder="Calories"
-                               Keyboard="Numeric"
-                               SemanticProperties.Hint="Required calories as a number" />
-                        <Entry x:Name="ProteinEntry"
-                               Grid.Column="1"
-                               Placeholder="Protein g"
-                               Keyboard="Numeric" />
-                    </Grid>
-                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
-                        <Entry x:Name="CarbsEntry"
-                               Placeholder="Carbs g"
-                               Keyboard="Numeric" />
-                        <Entry x:Name="FatEntry"
-                               Grid.Column="1"
-                               Placeholder="Fat g"
-                               Keyboard="Numeric" />
-                    </Grid>
-                    <Entry x:Name="AllergyEntry"
-                           Placeholder="Allergy note or dietary restriction"
-                           SemanticProperties.Hint="Enter allergy or dietary information" />
-                </VerticalStackLayout>
-            </Border>
+            <Label Text="Fill in the details below"
+                   FontSize="13"
+                   TextColor="{AppThemeBinding Light=#6C757D, Dark=#ADB5BD}"
+                   Margin="0,-4,0,12" />
 
+            <!-- Basic Information -->
+            <Entry x:Name="NameEntry"
+                   Placeholder="Food name *"
+                   FontSize="15" />
+
+            <Picker x:Name="CategoryPicker"
+                    Title="Select category *"
+                    FontSize="15">
+                <Picker.Items>
+                    <x:String>Breakfast</x:String>
+                    <x:String>Lunch</x:String>
+                    <x:String>Dinner</x:String>
+                    <x:String>Snack</x:String>
+                    <x:String>Drink</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Editor x:Name="DescriptionEditor"
+                    Placeholder="Description *"
+                    AutoSize="TextChanges"
+                    HeightRequest="80"
+                    FontSize="14" />
+
+            <!-- Separator -->
+            <BoxView HeightRequest="1" 
+                     Color="{AppThemeBinding Light=#E9ECEF, Dark=#2C2C3A}"
+                     Margin="0,8,0,8" />
+
+            <Label Text="Nutritional Values"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource PrimaryColor}" />
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <Entry x:Name="CaloriesEntry"
+                       Placeholder="Calories (kcal) *"
+                       Keyboard="Numeric"
+                       FontSize="14" />
+                <Entry x:Name="ProteinEntry"
+                       Grid.Column="1"
+                       Placeholder="Protein (g)"
+                       Keyboard="Numeric"
+                       FontSize="14" />
+            </Grid>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                <Entry x:Name="CarbsEntry"
+                       Placeholder="Carbs (g)"
+                       Keyboard="Numeric"
+                       FontSize="14" />
+                <Entry x:Name="FatEntry"
+                       Grid.Column="1"
+                       Placeholder="Fat (g)"
+                       Keyboard="Numeric"
+                       FontSize="14" />
+            </Grid>
+
+            <Entry x:Name="AllergyEntry"
+                   Placeholder="Allergy notes (optional)"
+                   FontSize="14" />
+
+            <!-- Validation Panel -->
             <Border x:Name="ValidationPanel"
                     IsVisible="False"
-                    StrokeThickness="0"
-                    BackgroundColor="{AppThemeBinding Light=#FFE8E0, Dark=#40201C}"
-                    Padding="14">
+                    BackgroundColor="{AppThemeBinding Light=#FFF5F5, Dark=#2D1A1A}"
+                    Padding="12"
+                    Margin="0,8,0,0">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="8" />
                 </Border.StrokeShape>
                 <Label x:Name="ValidationLabel"
-                       TextColor="{AppThemeBinding Light=#B43820, Dark=#FFB4A6}"
-                       FontAttributes="Bold" />
+                       TextColor="{StaticResource AccentColor}"
+                       FontSize="12" />
             </Border>
 
-            <Button Text="Save record"
-                    FontAttributes="Bold"
-                    BackgroundColor="#D9472B"
+            <!-- Save Button -->
+            <Button Text="Save Entry"
+                    BackgroundColor="{StaticResource PrimaryColor}"
                     TextColor="#FFFFFF"
+                    FontAttributes="Bold"
+                    CornerRadius="25"
+                    HeightRequest="48"
                     Clicked="OnSaveClicked"
-                    SemanticProperties.Hint="Validate and save this record" />
+                    Margin="0,16,0,0" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

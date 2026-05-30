@@ -1,4 +1,5 @@
 using FoodDrinkApp.Services;
+using System.Globalization;
 
 namespace FoodDrinkApp;
 
@@ -50,5 +51,25 @@ public partial class MainPage : ContentPage
         FoodRefreshView.IsRefreshing = false;
         var source = FoodCatalogService.LastLoadUsedMockApi ? "mockapi.io" : "local fallback data";
         SemanticScreenReader.Announce($"Food and drink list refreshed. Current source: {source}.");
+    }
+}
+
+// Calories to Color Converter - for left accent bar
+public class CaloriesToColorConverter : IValueConverter
+{
+    public object? Convert(object? value, Type? targetType, object? parameter, CultureInfo? culture)
+    {
+        if (value is int calories)
+        {
+            if (calories < 200) return Color.FromArgb("#4ECDC4");
+            if (calories < 500) return Color.FromArgb("#2E86AB");
+            return Color.FromArgb("#E05A5A");
+        }
+        return Color.FromArgb("#2E86AB");
+    }
+
+    public object? ConvertBack(object? value, Type? targetType, object? parameter, CultureInfo? culture)
+    {
+        throw new NotImplementedException();
     }
 }
