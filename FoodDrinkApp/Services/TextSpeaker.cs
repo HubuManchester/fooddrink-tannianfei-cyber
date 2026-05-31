@@ -1,6 +1,6 @@
 namespace FoodDrinkApp.Services;
 
-public static class SpeechService
+public static class TextSpeaker
 {
     private static CancellationTokenSource? currentSpeech;
 
@@ -24,8 +24,6 @@ public static class SpeechService
         {
         }
     }
-
-    public static Task SpeakChineseAsync(string text) => SpeakAsync(text);
 
     public static void Stop()
     {

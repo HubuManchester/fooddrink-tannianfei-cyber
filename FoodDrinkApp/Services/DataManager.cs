@@ -4,7 +4,7 @@ using FoodDrinkApp.Models;
 
 namespace FoodDrinkApp.Services;
 
-public static class FoodCatalogService
+public static class DataManager
 {
     private static readonly HttpClient HttpClient = new()
     {
@@ -16,7 +16,7 @@ public static class FoodCatalogService
         PropertyNameCaseInsensitive = true
     };
 
-    private static readonly List<FoodItem> LocalFallbackItems =
+    private static readonly List<FoodEntry> LocalFallbackItems =
     [
         new()
         {
@@ -276,11 +276,11 @@ public static class FoodCatalogService
         }
     ];
 
-    private static List<FoodItem> cachedItems = new(LocalFallbackItems);
+    private static List<FoodEntry> cachedItems = new(LocalFallbackItems);
 
     public static bool LastLoadUsedMockApi { get; private set; }
 
-    public static async Task<IReadOnlyList<FoodItem>> SearchAsync(string? query)
+    public static async Task<IReadOnlyList<FoodEntry>> SearchAsync(string? query)
     {
         var items = await GetAllAsync();
 
@@ -300,14 +300,14 @@ public static class FoodCatalogService
             .ToList();
     }
 
-    public static async Task<FoodItem?> GetByIdAsync(string id)
+    public static async Task<FoodEntry?> GetByIdAsync(string id)
     {
-        if (MockApiConfig.IsConfigured)
+        if (ApiConnector.IsConfigured)
         {
             try
             {
-                var item = await HttpClient.GetFromJsonAsync<FoodItem>(
-                    $"{MockApiConfig.EndpointUrl.TrimEnd('/')}/{Uri.EscapeDataString(id)}",
+                var item = await HttpClient.GetFromJsonAsync<FoodEntry>(
+                    $"{ApiConnector.EndpointUrl.TrimEnd('/')}/{Uri.EscapeDataString(id)}",
                     JsonOptions);
 
                 if (item is not null)
@@ -323,14 +323,14 @@ public static class FoodCatalogService
         return cachedItems.FirstOrDefault(item => item.Id == id);
     }
 
-    public static async Task<FoodItem> AddAsync(FoodItem item)
+    public static async Task<FoodEntry> AddAsync(FoodEntry item)
     {
-        if (MockApiConfig.IsConfigured)
+        if (ApiConnector.IsConfigured)
         {
-            var response = await HttpClient.PostAsJsonAsync(MockApiConfig.EndpointUrl, item, JsonOptions);
+            var response = await HttpClient.PostAsJsonAsync(ApiConnector.EndpointUrl, item, JsonOptions);
             response.EnsureSuccessStatusCode();
 
-            var created = await response.Content.ReadFromJsonAsync<FoodItem>(JsonOptions);
+            var created = await response.Content.ReadFromJsonAsync<FoodEntry>(JsonOptions);
             if (created is not null)
             {
                 cachedItems.Add(created);
@@ -342,9 +342,9 @@ public static class FoodCatalogService
         return item;
     }
 
-    private static async Task<IReadOnlyList<FoodItem>> GetAllAsync()
+    private static async Task<IReadOnlyList<FoodEntry>> GetAllAsync()
     {
-        if (!MockApiConfig.IsConfigured)
+        if (!ApiConnector.IsConfigured)
         {
             LastLoadUsedMockApi = false;
             return cachedItems;
@@ -352,7 +352,7 @@ public static class FoodCatalogService
 
         try
         {
-            var items = await HttpClient.GetFromJsonAsync<List<FoodItem>>(MockApiConfig.EndpointUrl, JsonOptions);
+            var items = await HttpClient.GetFromJsonAsync<List<FoodEntry>>(ApiConnector.EndpointUrl, JsonOptions);
             if (items is { Count: > 0 })
             {
                 cachedItems = items;

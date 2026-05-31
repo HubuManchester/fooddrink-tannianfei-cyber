@@ -1,11 +1,12 @@
 using FoodDrinkApp.Models;
 using FoodDrinkApp.Services;
+using System.Formats.Tar;
 
-namespace FoodDrinkApp;
+namespace FoodDrinkApp.Views;
 
-public partial class AddItemPage : ContentPage
+public partial class AddEntryPage : ContentPage
 {
-    public AddItemPage()
+    public AddEntryPage()
     {
         InitializeComponent();
     }
@@ -13,7 +14,7 @@ public partial class AddItemPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        AccessibilityService.ApplyFontScale(this);
+        FontScaler.ApplyFontScale(this);
     }
 
     private async void OnSaveClicked(object? sender, EventArgs e)
@@ -28,7 +29,7 @@ public partial class AddItemPage : ContentPage
                 return;
             }
 
-            var item = new FoodItem
+            var item = new FoodEntry
             {
                 Name = NameEntry.Text!.Trim(),
                 Category = CategoryPicker.SelectedItem?.ToString() ?? "Snack",
@@ -47,7 +48,7 @@ public partial class AddItemPage : ContentPage
                 Tags = $"{NameEntry.Text} {CategoryPicker.SelectedItem} {DescriptionEditor.Text}"
             };
 
-            await FoodCatalogService.AddAsync(item);
+            await DataManager.AddAsync(item);
             HapticFeedback.Default.Perform(HapticFeedbackType.Click);
             SemanticScreenReader.Announce("Food record saved.");
 

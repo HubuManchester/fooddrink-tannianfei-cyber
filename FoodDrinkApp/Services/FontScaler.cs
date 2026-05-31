@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 
 namespace FoodDrinkApp.Services;
 
-public static class AccessibilityService
+public static class FontScaler
 {
     private const double LargeTextScale = 1.22;
     private static readonly ConditionalWeakTable<BindableObject, FontSizeStore> OriginalFontSizes = new();

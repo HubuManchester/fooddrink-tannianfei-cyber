@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace FoodDrinkApp.Models;
 
-public sealed class FoodItem
+public sealed class FoodEntry
 {
     [JsonPropertyName("id")]
     public string Id { get; set; } = Guid.NewGuid().ToString("N");

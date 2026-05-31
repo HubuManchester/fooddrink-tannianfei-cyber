@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:FoodDrinkApp.Models"
-             x:Class="FoodDrinkApp.MainPage"
+             x:Class="FoodDrinkApp.Views.HomePage"
              Title="Log"
              BackgroundColor="{AppThemeBinding Light=#F4FAF5, Dark=#0D1B2A}">
 
@@ -56,7 +56,7 @@
                     <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="12" HorizontalItemSpacing="12" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:FoodItem">
+                    <DataTemplate x:DataType="models:FoodEntry">
                         <Border StrokeThickness="0"
                                 BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1B2D3C}"
                                 Padding="0">

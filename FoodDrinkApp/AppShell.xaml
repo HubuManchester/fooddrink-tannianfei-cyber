@@ -3,7 +3,7 @@
     x:Class="FoodDrinkApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:FoodDrinkApp"
+    xmlns:views="clr-namespace:FoodDrinkApp.Views"
     Title="VitaLog"
     FlyoutBehavior="Disabled"
     Shell.BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0D1B2A}"
@@ -18,15 +18,15 @@
     <TabBar>
         <ShellContent
             Title="Log"
-            ContentTemplate="{DataTemplate local:MainPage}"
-            Route="MainPage" />
+            ContentTemplate="{DataTemplate views:HomePage}"
+            Route="HomePage" />
         <ShellContent
             Title="Scan"
-            ContentTemplate="{DataTemplate local:HardwarePage}"
-            Route="HardwarePage" />
+            ContentTemplate="{DataTemplate views:DevicePage}"
+            Route="DevicePage" />
         <ShellContent
             Title="Profile"
-            ContentTemplate="{DataTemplate local:SettingsPage}"
-            Route="SettingsPage" />
+            ContentTemplate="{DataTemplate views:UserPage}"
+            Route="UserPage" />
     </TabBar>
 </Shell>

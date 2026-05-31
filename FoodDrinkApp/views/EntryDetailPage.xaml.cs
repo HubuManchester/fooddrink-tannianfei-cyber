@@ -1,8 +1,9 @@
 using FoodDrinkApp.Models;
 using FoodDrinkApp.Services;
 using System.Globalization;
+using System.Xml;
 
-namespace FoodDrinkApp;
+namespace FoodDrinkApp.Views;
 
 public class ProteinToWidthConverter : IValueConverter
 {
@@ -49,11 +50,11 @@ public class FiberToWidthConverter : IValueConverter
 }
 
 [QueryProperty(nameof(ItemId), "id")]
-public partial class FoodDetailPage : ContentPage
+public partial class EntryDetailPage : ContentPage
 {
-    private FoodItem? currentItem;
+    private FoodEntry? currentItem;
 
-    public FoodDetailPage()
+    public EntryDetailPage()
     {
         InitializeComponent();
     }
@@ -61,12 +62,12 @@ public partial class FoodDetailPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        AccessibilityService.ApplyFontScale(this);
+        FontScaler.ApplyFontScale(this);
     }
 
     protected override void OnDisappearing()
     {
-        SpeechService.Stop();
+        TextSpeaker.Stop();
         base.OnDisappearing();
     }
 
@@ -77,7 +78,7 @@ public partial class FoodDetailPage : ContentPage
 
     private async Task LoadItemAsync(string id)
     {
-        currentItem = await FoodCatalogService.GetByIdAsync(id);
+        currentItem = await DataManager.GetByIdAsync(id);
         BindingContext = currentItem;
         RenderItem();
     }
@@ -119,7 +120,7 @@ public partial class FoodDetailPage : ContentPage
 
         try
         {
-            await SpeechService.SpeakAsync(currentItem.AccessibleSummary);
+            await TextSpeaker.SpeakAsync(currentItem.AccessibleSummary);
         }
         catch (Exception ex)
         {
@@ -129,7 +130,7 @@ public partial class FoodDetailPage : ContentPage
 
     private void OnStopSpeechClicked(object? sender, EventArgs e)
     {
-        SpeechService.Stop();
+        TextSpeaker.Stop();
         SemanticScreenReader.Announce("Stopped");
     }
 

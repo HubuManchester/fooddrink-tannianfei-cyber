@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodDrinkApp.Views.UserPage"
+             Title="Profile"
+             BackgroundColor="{AppThemeBinding Light=#F4FAF5, Dark=#0D1B2A}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Profile Header -->
+            <Border BackgroundColor="#2D6A4F"
+                    Padding="20"
+                    Margin="0,0,0,0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="25" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                    <Label Text="VitaLog User"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#FFFFFF"
+                           HorizontalOptions="Center" />
+                    <Label Text="Track · Log · Discover"
+                           FontSize="12"
+                           TextColor="#D8F3DC"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Theme Card -->
+            <Border BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1B2D3C}"
+                    Padding="16"
+                    StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
+                <Border.Shadow>
+                    <Shadow Brush="#15000000" Offset="0,2" Radius="8" />
+                </Border.Shadow>
+
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Appearance" FontSize="16" FontAttributes="Bold" TextColor="#2D6A4F" />
+
+                    <Picker x:Name="ThemePicker"
+                            Title="Select theme"
+                            SelectedIndexChanged="OnThemeChanged"
+                            BackgroundColor="{AppThemeBinding Light=#F4FAF5, Dark=#0D1B2A}">
+                        <Picker.Items>
+                            <x:String>System default</x:String>
+                            <x:String>Light mode</x:String>
+                            <x:String>Dark mode</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Accessibility Card -->
+            <Border BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1B2D3C}"
+                    Padding="16"
+                    StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
+                <Border.Shadow>
+                    <Shadow Brush="#15000000" Offset="0,2" Radius="8" />
+                </Border.Shadow>
+
+                <VerticalStackLayout Spacing="12">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Accessibility" FontSize="16" FontAttributes="Bold" TextColor="#2D6A4F" />
+                            <Label Text="Large text mode for better readability" FontSize="11" TextColor="#6C757D" />
+                        </VerticalStackLayout>
+                        <Switch x:Name="LargeTextSwitch"
+                                Grid.Column="1"
+                                Toggled="OnLargeTextToggled" />
+                    </Grid>
+
+                    <Border BackgroundColor="{AppThemeBinding Light=#F4FAF5, Dark=#0D1B2A}"
+                            Padding="12">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12" />
+                        </Border.StrokeShape>
+                        <VerticalStackLayout Spacing="6">
+                            <Label x:Name="LargeTextPreviewTitle"
+                                   Text="Preview"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#2D6A4F" />
+                            <Label x:Name="LargeTextPreviewBody"
+                                   Text="Enable the switch above to see text size change here and across the app."
+                                   FontSize="12"
+                                   TextColor="#6C757D" />
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- About Card -->
+            <Border BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1B2D3C}"
+                    Padding="16"
+                    StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
+                <Border.Shadow>
+                    <Shadow Brush="#15000000" Offset="0,2" Radius="8" />
+                </Border.Shadow>
+
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="About" FontSize="16" FontAttributes="Bold" TextColor="#2D6A4F" />
+
+                    <Label Text="VitaLog Version 2.0"
+                           FontSize="13"
+                           TextColor="#2D6A4F" />
+                    <Label Text="A food tracking app built with .NET MAUI"
+                           FontSize="11"
+                           TextColor="#6C757D" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label x:Name="SettingsStatusLabel"
+                   Text="Ready"
+                   FontSize="12"
+                   FontAttributes="Bold"
+                   TextColor="#52B788"
+                   HorizontalOptions="Center"
+                   Margin="0,8,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

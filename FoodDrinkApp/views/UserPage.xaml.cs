@@ -1,20 +1,20 @@
 using FoodDrinkApp.Services;
 
-namespace FoodDrinkApp;
+namespace FoodDrinkApp.Views;
 
-public partial class SettingsPage : ContentPage
+public partial class UserPage : ContentPage
 {
-    public SettingsPage()
+    public UserPage()
     {
         InitializeComponent();
         ThemePicker.SelectedIndex = 0;
-        LargeTextSwitch.IsToggled = AccessibilityService.LargeTextEnabled;
+        LargeTextSwitch.IsToggled = FontScaler.LargeTextEnabled;
     }
 
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        LargeTextSwitch.IsToggled = AccessibilityService.LargeTextEnabled;
+        LargeTextSwitch.IsToggled = FontScaler.LargeTextEnabled;
         ApplyLargeTextState();
     }
 
@@ -32,7 +32,7 @@ public partial class SettingsPage : ContentPage
 
     private void OnLargeTextToggled(object? sender, ToggledEventArgs e)
     {
-        AccessibilityService.LargeTextEnabled = e.Value;
+        FontScaler.LargeTextEnabled = e.Value;
         ApplyLargeTextState();
         Announce(e.Value
             ? "Large text mode is on. Page text is now larger."
@@ -41,12 +41,12 @@ public partial class SettingsPage : ContentPage
 
     private void ApplyLargeTextState()
     {
-        AccessibilityService.ApplyFontScale(this);
+        FontScaler.ApplyFontScale(this);
 
-        LargeTextPreviewTitle.Text = AccessibilityService.LargeTextEnabled
+        LargeTextPreviewTitle.Text = FontScaler.LargeTextEnabled
             ? "Large text preview: enlarged"
             : "Large text preview";
-        LargeTextPreviewBody.Text = AccessibilityService.LargeTextEnabled
+        LargeTextPreviewBody.Text = FontScaler.LargeTextEnabled
             ? "Text is now noticeably larger. The food and hardware pages will use the same setting."
             : "Turn on the switch to enlarge this preview and other page text.";
     }

@@ -1,12 +1,12 @@
 using FoodDrinkApp.Services;
 
-namespace FoodDrinkApp;
+namespace FoodDrinkApp.Views;
 
-public partial class HardwarePage : ContentPage
+public partial class DevicePage : ContentPage
 {
     private int feedbackTestCount;
 
-    public HardwarePage()
+    public DevicePage()
     {
         InitializeComponent();
     }
@@ -14,12 +14,12 @@ public partial class HardwarePage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        AccessibilityService.ApplyFontScale(this);
+        FontScaler.ApplyFontScale(this);
     }
 
     protected override void OnDisappearing()
     {
-        SpeechService.Stop();
+        TextSpeaker.Stop();
         base.OnDisappearing();
     }
 
@@ -158,8 +158,8 @@ public partial class HardwarePage : ContentPage
     {
         try
         {
-            const string helpText = "NutriBite records foods and drinks, shows nutrition details, and uses camera, location, speech, and haptic feedback to make meal tracking more practical.";
-            await SpeechService.SpeakAsync(helpText);
+            const string helpText = "VitaLog records foods and drinks, shows nutrition details, and uses camera, location, speech, and haptic feedback to make meal tracking more practical.";
+            await TextSpeaker.SpeakAsync(helpText);
             SetStatus("Reading help content aloud.");
         }
         catch (Exception ex)
@@ -170,7 +170,7 @@ public partial class HardwarePage : ContentPage
 
     private void OnStopSpeechClicked(object? sender, EventArgs e)
     {
-        SpeechService.Stop();
+        TextSpeaker.Stop();
         SetStatus("Reading stopped.");
     }
 
@@ -181,8 +181,8 @@ public partial class HardwarePage : ContentPage
             Vibration.Default.Vibrate(TimeSpan.FromMilliseconds(450));
             HapticFeedback.Default.Perform(HapticFeedbackType.LongPress);
             feedbackTestCount++;
-            FeedbackCountLabel.Text = $"Haptic feedback tests: {feedbackTestCount}";
-            SetStatus("Vibration and haptic feedback triggered. The changing counter can be used for screen-recorded verification.");
+            FeedbackCountLabel.Text = $"Tests: {feedbackTestCount}";
+            SetStatus("Vibration and haptic feedback triggered.");
         }
         catch (Exception ex)
         {

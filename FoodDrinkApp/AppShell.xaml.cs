@@ -1,11 +1,13 @@
-﻿namespace FoodDrinkApp;
+﻿using FoodDrinkApp.Views;
+
+namespace FoodDrinkApp;
 
 public partial class AppShell : Shell
 {
-	public AppShell()
-	{
-		InitializeComponent();
-		Routing.RegisterRoute(nameof(AddItemPage), typeof(AddItemPage));
-		Routing.RegisterRoute(nameof(FoodDetailPage), typeof(FoodDetailPage));
-	}
+    public AppShell()
+    {
+        InitializeComponent();
+        Routing.RegisterRoute(nameof(AddEntryPage), typeof(AddEntryPage));
+        Routing.RegisterRoute(nameof(EntryDetailPage), typeof(EntryDetailPage));
+    }
 }

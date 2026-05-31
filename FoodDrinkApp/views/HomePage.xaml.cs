@@ -1,0 +1,56 @@
+using FoodDrinkApp.Models;
+using FoodDrinkApp.Services;
+using System.Security.Cryptography;
+
+namespace FoodDrinkApp.Views;
+
+public partial class HomePage : ContentPage
+{
+    public HomePage()
+    {
+        InitializeComponent();
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        FontScaler.ApplyFontScale(this);
+        await LoadFoodItemsAsync(SearchFoodBar.Text);
+    }
+
+    private async Task LoadFoodItemsAsync(string? query = null)
+    {
+        FoodCollection.ItemsSource = await DataManager.SearchAsync(query);
+    }
+
+    private async void OnAddClicked(object? sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(nameof(AddEntryPage));
+    }
+
+    private async void OnDetailsClicked(object? sender, EventArgs e)
+    {
+        if (sender is Button button && button.CommandParameter is string id)
+        {
+            await Shell.Current.GoToAsync($"{nameof(EntryDetailPage)}?id={Uri.EscapeDataString(id)}");
+        }
+    }
+
+    private async void OnSearchTextChanged(object? sender, TextChangedEventArgs e)
+    {
+        await LoadFoodItemsAsync(e.NewTextValue);
+    }
+
+    private async void OnSearchButtonPressed(object? sender, EventArgs e)
+    {
+        await LoadFoodItemsAsync(SearchFoodBar.Text);
+    }
+
+    private async void OnRefreshing(object? sender, EventArgs e)
+    {
+        await LoadFoodItemsAsync(SearchFoodBar.Text);
+        FoodRefreshView.IsRefreshing = false;
+        var source = DataManager.LastLoadUsedMockApi ? "mockapi.io" : "local fallback data";
+        SemanticScreenReader.Announce($"Food list refreshed. Current source: {source}.");
+    }
+}
