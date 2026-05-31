@@ -4,28 +4,28 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:FoodDrinkApp"
-    Title="FoodTracker"
+    Title="VitaLog"
     FlyoutBehavior="Disabled"
-    Shell.BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#121212}"
-    Shell.ForegroundColor="{AppThemeBinding Light=#1E1E2E, Dark=#EEEEEE}"
-    Shell.TitleColor="{AppThemeBinding Light=#1E1E2E, Dark=#EEEEEE}"
-    Shell.UnselectedColor="{AppThemeBinding Light=#999999, Dark=#666666}"
-    Shell.TabBarBackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#121212}"
-    Shell.TabBarForegroundColor="{AppThemeBinding Light=#7B2CBF, Dark=#9D4EDD}"
-    Shell.TabBarTitleColor="{AppThemeBinding Light=#7B2CBF, Dark=#9D4EDD}"
-    Shell.TabBarUnselectedColor="{AppThemeBinding Light=#999999, Dark=#666666}">
+    Shell.BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0D1B2A}"
+    Shell.ForegroundColor="{AppThemeBinding Light=#1B4332, Dark=#D8F3DC}"
+    Shell.TitleColor="{AppThemeBinding Light=#2D6A4F, Dark=#95D5B2}"
+    Shell.UnselectedColor="{AppThemeBinding Light=#A8DADC, Dark=#457B9D}"
+    Shell.TabBarBackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#0D1B2A}"
+    Shell.TabBarForegroundColor="{AppThemeBinding Light=#2D6A4F, Dark=#95D5B2}"
+    Shell.TabBarTitleColor="{AppThemeBinding Light=#2D6A4F, Dark=#95D5B2}"
+    Shell.TabBarUnselectedColor="{AppThemeBinding Light=#A8DADC, Dark=#457B9D}">
 
     <TabBar>
         <ShellContent
-            Title="Home"
+            Title="Log"
             ContentTemplate="{DataTemplate local:MainPage}"
             Route="MainPage" />
         <ShellContent
-            Title="Device"
+            Title="Scan"
             ContentTemplate="{DataTemplate local:HardwarePage}"
             Route="HardwarePage" />
         <ShellContent
-            Title="More"
+            Title="Profile"
             ContentTemplate="{DataTemplate local:SettingsPage}"
             Route="SettingsPage" />
     </TabBar>

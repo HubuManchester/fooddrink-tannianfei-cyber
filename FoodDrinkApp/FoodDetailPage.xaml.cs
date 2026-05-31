@@ -4,7 +4,6 @@ using System.Globalization;
 
 namespace FoodDrinkApp;
 
-// UI Converter for progress bars
 public class ProteinToWidthConverter : IValueConverter
 {
     public object? Convert(object? value, Type? targetType, object? parameter, CultureInfo? culture)
@@ -33,6 +32,17 @@ public class FatToWidthConverter : IValueConverter
     {
         if (value is int fat)
             return Math.Min(fat * 3, 100).ToString();
+        return "0";
+    }
+    public object? ConvertBack(object? value, Type? targetType, object? parameter, CultureInfo? culture) => throw new NotImplementedException();
+}
+
+public class FiberToWidthConverter : IValueConverter
+{
+    public object? Convert(object? value, Type? targetType, object? parameter, CultureInfo? culture)
+    {
+        if (value is int fiber)
+            return Math.Min(fiber * 5, 100).ToString();
         return "0";
     }
     public object? ConvertBack(object? value, Type? targetType, object? parameter, CultureInfo? culture) => throw new NotImplementedException();
@@ -85,10 +95,13 @@ public partial class FoodDetailPage : ContentPage
         CategoryLabel.Text = currentItem.Category;
         CaloriesLabel.Text = $"{currentItem.Calories} kcal";
 
-        // Set macro values
         ProteinValueLabel.Text = $"{currentItem.Protein}g";
         CarbsValueLabel.Text = $"{currentItem.Carbs}g";
         FatValueLabel.Text = $"{currentItem.Fat}g";
+        FiberValueLabel.Text = $"{currentItem.Fiber}g";
+        SugarValueLabel.Text = $"{currentItem.Sugar}g";
+        SodiumValueLabel.Text = $"{currentItem.Sodium}mg";
+        VitaminCValueLabel.Text = $"{currentItem.VitaminC}mg";
 
         DescriptionLabel.Text = currentItem.Description;
         AllergyLabel.Text = currentItem.AllergyNote;

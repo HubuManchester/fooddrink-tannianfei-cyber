@@ -20,7 +20,7 @@ public partial class AddItemPage : ContentPage
     {
         try
         {
-            var validationMessage = ValidateForm(out var calories, out var protein, out var carbs, out var fat);
+            var validationMessage = ValidateForm(out var calories, out var protein, out var carbs, out var fat, out var fiber, out var sugar, out var sodium, out var vitaminC);
             if (validationMessage is not null)
             {
                 ShowValidation(validationMessage);
@@ -37,6 +37,10 @@ public partial class AddItemPage : ContentPage
                 Protein = protein,
                 Carbs = carbs,
                 Fat = fat,
+                Fiber = fiber,
+                Sugar = sugar,
+                Sodium = sodium,
+                VitaminC = vitaminC,
                 AllergyNote = string.IsNullOrWhiteSpace(AllergyEntry.Text)
                     ? "No allergy note provided."
                     : AllergyEntry.Text.Trim(),
@@ -47,13 +51,7 @@ public partial class AddItemPage : ContentPage
             HapticFeedback.Default.Perform(HapticFeedbackType.Click);
             SemanticScreenReader.Announce("Food record saved.");
 
-            await DisplayAlert(
-                "Saved",
-                MockApiConfig.IsConfigured
-                    ? "The record has been saved to mockapi.io."
-                    : "The record has been saved to local fallback data.",
-                "OK");
-
+            await DisplayAlert("Saved", "The record has been saved successfully.", "OK");
             await Shell.Current.GoToAsync("..");
         }
         catch (Exception ex)
@@ -62,37 +60,50 @@ public partial class AddItemPage : ContentPage
         }
     }
 
-    private string? ValidateForm(out int calories, out int protein, out int carbs, out int fat)
+    private string? ValidateForm(out int calories, out int protein, out int carbs, out int fat, out int fiber, out int sugar, out int sodium, out int vitaminC)
     {
-        calories = protein = carbs = fat = 0;
+        calories = protein = carbs = fat = fiber = sugar = sodium = vitaminC = 0;
 
         if (string.IsNullOrWhiteSpace(NameEntry.Text))
-        {
             return "Please enter a food or drink name.";
-        }
 
         if (CategoryPicker.SelectedIndex < 0)
-        {
             return "Please choose a category.";
-        }
 
         if (string.IsNullOrWhiteSpace(DescriptionEditor.Text))
-        {
             return "Please add a short description.";
-        }
 
-        return TryReadNumber(CaloriesEntry.Text, "calories", out calories)
-            ?? TryReadNumber(ProteinEntry.Text, "protein", out protein)
-            ?? TryReadNumber(CarbsEntry.Text, "carbs", out carbs)
-            ?? TryReadNumber(FatEntry.Text, "fat", out fat);
+        var error = TryReadNumber(CaloriesEntry.Text, "calories", out calories);
+        if (error != null) return error;
+
+        error = TryReadNumber(ProteinEntry.Text, "protein", out protein);
+        if (error != null) return error;
+
+        error = TryReadNumber(CarbsEntry.Text, "carbs", out carbs);
+        if (error != null) return error;
+
+        error = TryReadNumber(FatEntry.Text, "fat", out fat);
+        if (error != null) return error;
+
+        error = TryReadNumber(FiberEntry.Text, "fiber", out fiber);
+        if (error != null) return error;
+
+        error = TryReadNumber(SugarEntry.Text, "sugar", out sugar);
+        if (error != null) return error;
+
+        error = TryReadNumber(SodiumEntry.Text, "sodium", out sodium);
+        if (error != null) return error;
+
+        error = TryReadNumber(VitaminCEntry.Text, "vitamin C", out vitaminC);
+        if (error != null) return error;
+
+        return null;
     }
 
     private static string? TryReadNumber(string? value, string fieldName, out int number)
     {
         if (int.TryParse(value, out number) && number >= 0)
-        {
             return null;
-        }
 
         return $"Please enter a valid non-negative number for {fieldName}.";
     }

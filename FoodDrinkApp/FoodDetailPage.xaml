@@ -4,168 +4,161 @@
              xmlns:local="clr-namespace:FoodDrinkApp"
              x:Class="FoodDrinkApp.FoodDetailPage"
              Title="Details"
-             BackgroundColor="{AppThemeBinding Light=#F8F9FA, Dark=#0D0D0D}">
+             BackgroundColor="{AppThemeBinding Light=#F4FAF5, Dark=#0D1B2A}">
 
     <ContentPage.Resources>
-        <Color x:Key="PrimaryColor">#7B2CBF</Color>
-        <Color x:Key="SecondaryColor">#9D4EDD</Color>
-        <Color x:Key="AccentColor">#FF6B6B</Color>
+        <Color x:Key="PrimaryGreen">#2D6A4F</Color>
+        <Color x:Key="LightGreen">#40916C</Color>
+        <Color x:Key="Mint">#52B788</Color>
+        <Color x:Key="Warning">#E76F51</Color>
         <local:ProteinToWidthConverter x:Key="ProteinToWidthConverter" />
         <local:CarbsToWidthConverter x:Key="CarbsToWidthConverter" />
         <local:FatToWidthConverter x:Key="FatToWidthConverter" />
+        <local:FiberToWidthConverter x:Key="FiberToWidthConverter" />
     </ContentPage.Resources>
 
     <ScrollView>
-        <VerticalStackLayout Spacing="12">
+        <VerticalStackLayout Spacing="0">
 
-            <!-- Top header image area -->
-            <Border HeightRequest="200"
-                    BackgroundColor="{StaticResource PrimaryColor}"
-                    Opacity="0.8">
+            <Border BackgroundColor="{StaticResource PrimaryGreen}"
+                    Padding="20,40,20,30">
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="0,0,24,24" />
+                    <RoundRectangle CornerRadius="0,0,30,30" />
                 </Border.StrokeShape>
-            </Border>
-
-            <!-- Main content area -->
-            <VerticalStackLayout Padding="20,16,20,24" Spacing="20">
-
-                <!-- Name and Calories -->
-                <Grid ColumnDefinitions="*,Auto" RowSpacing="8">
+                <VerticalStackLayout Spacing="12">
                     <Label x:Name="NameLabel"
-                           FontSize="24"
-                           FontAttributes="Bold"
-                           TextColor="{AppThemeBinding Light=#212529, Dark=#F8F9FA}" />
-
-                    <Label Grid.Column="1"
-                           x:Name="CaloriesLabel"
                            FontSize="28"
                            FontAttributes="Bold"
-                           TextColor="{StaticResource AccentColor}" />
-
-                    <Label Grid.Row="1"
-                           Grid.ColumnSpan="2"
-                           x:Name="CategoryLabel"
+                           TextColor="#FFFFFF"
+                           HorizontalOptions="Center" />
+                    <Label x:Name="CategoryLabel"
                            FontSize="14"
-                           TextColor="{StaticResource PrimaryColor}" />
-                </Grid>
+                           TextColor="#D8F3DC"
+                           HorizontalOptions="Center" />
+                    <Label x:Name="CaloriesLabel"
+                           FontSize="36"
+                           FontAttributes="Bold"
+                           TextColor="#FFFFFF"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Border>
 
-                <!-- Separator -->
-                <BoxView HeightRequest="1" 
-                         Color="{AppThemeBinding Light=#E9ECEF, Dark=#2C2C3A}" />
+            <Border BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1B2D3C}"
+                    Margin="20"
+                    Padding="20">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
 
-                <!-- Nutrition Breakdown -->
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Nutrition Facts"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource PrimaryGreen}" />
+
+                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12" RowSpacing="8">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Protein" FontSize="11" TextColor="#6C757D" />
+                            <Label x:Name="ProteinValueLabel" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource PrimaryGreen}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Carbs" FontSize="11" TextColor="#6C757D" />
+                            <Label x:Name="CarbsValueLabel" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource PrimaryGreen}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="2" Spacing="4">
+                            <Label Text="Fat" FontSize="11" TextColor="#6C757D" />
+                            <Label x:Name="FatValueLabel" FontSize="20" FontAttributes="Bold" TextColor="{StaticResource PrimaryGreen}" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <BoxView HeightRequest="1" Color="#E9ECEF" />
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Fiber" FontSize="13" TextColor="#6C757D" />
+                            <Label x:Name="FiberValueLabel" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource LightGreen}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Sugar" FontSize="13" TextColor="#6C757D" />
+                            <Label x:Name="SugarValueLabel" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource Warning}" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Sodium" FontSize="13" TextColor="#6C757D" />
+                            <Label x:Name="SodiumValueLabel" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource LightGreen}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Vitamin C" FontSize="13" TextColor="#6C757D" />
+                            <Label x:Name="VitaminCValueLabel" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource LightGreen}" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1B2D3C}"
+                    Margin="20"
+                    Padding="20">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
                 <VerticalStackLayout Spacing="12">
-                    <Label Text="Nutrition Breakdown"
-                           FontSize="15"
+                    <Label Text="Description"
+                           FontSize="16"
                            FontAttributes="Bold"
-                           TextColor="{AppThemeBinding Light=#212529, Dark=#F8F9FA}" />
-
-                    <!-- Protein -->
-                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
-                        <Label Text="🥩" FontSize="14" />
-                        <Label Text="Protein" FontSize="13" TextColor="{AppThemeBinding Light=#6C757D, Dark=#ADB5BD}" />
-                        <Label x:Name="ProteinValueLabel" FontSize="13" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#212529, Dark=#F8F9FA}" />
-                    </Grid>
-                    <Border HeightRequest="6" BackgroundColor="#E9ECEF">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="3" />
-                        </Border.StrokeShape>
-                        <Border WidthRequest="{Binding Protein, Converter={StaticResource ProteinToWidthConverter}}"
-                                BackgroundColor="#4ECDC4">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="3" />
-                            </Border.StrokeShape>
-                        </Border>
-                    </Border>
-
-                    <!-- Carbs -->
-                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10" Margin="0,8,0,0">
-                        <Label Text="🍚" FontSize="14" />
-                        <Label Text="Carbs" FontSize="13" TextColor="{AppThemeBinding Light=#6C757D, Dark=#ADB5BD}" />
-                        <Label x:Name="CarbsValueLabel" FontSize="13" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#212529, Dark=#F8F9FA}" />
-                    </Grid>
-                    <Border HeightRequest="6" BackgroundColor="#E9ECEF">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="3" />
-                        </Border.StrokeShape>
-                        <Border WidthRequest="{Binding Carbs, Converter={StaticResource CarbsToWidthConverter}}"
-                                BackgroundColor="#2E86AB">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="3" />
-                            </Border.StrokeShape>
-                        </Border>
-                    </Border>
-
-                    <!-- Fat -->
-                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10" Margin="0,8,0,0">
-                        <Label Text="🧈" FontSize="14" />
-                        <Label Text="Fat" FontSize="13" TextColor="{AppThemeBinding Light=#6C757D, Dark=#ADB5BD}" />
-                        <Label x:Name="FatValueLabel" FontSize="13" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#212529, Dark=#F8F9FA}" />
-                    </Grid>
-                    <Border HeightRequest="6" BackgroundColor="#E9ECEF">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="3" />
-                        </Border.StrokeShape>
-                        <Border WidthRequest="{Binding Fat, Converter={StaticResource FatToWidthConverter}}"
-                                BackgroundColor="#E05A5A">
-                            <Border.StrokeShape>
-                                <RoundRectangle CornerRadius="3" />
-                            </Border.StrokeShape>
-                        </Border>
-                    </Border>
-                </VerticalStackLayout>
-
-                <!-- Description -->
-                <VerticalStackLayout Spacing="8">
-                    <Label Text="About"
-                           FontSize="15"
-                           FontAttributes="Bold"
-                           TextColor="{AppThemeBinding Light=#212529, Dark=#F8F9FA}" />
+                           TextColor="{StaticResource PrimaryGreen}" />
                     <Label x:Name="DescriptionLabel"
-                           FontSize="13"
-                           TextColor="{AppThemeBinding Light=#6C757D, Dark=#ADB5BD}" />
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light=#6C757D, Dark=#A8DADC}"
+                           LineBreakMode="WordWrap" />
                 </VerticalStackLayout>
+            </Border>
 
-                <!-- Allergy Info -->
+            <Border BackgroundColor="{AppThemeBinding Light=#FFF5F0, Dark=#2D1B1A}"
+                    Margin="20,0,20,20"
+                    Padding="20">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20" />
+                </Border.StrokeShape>
                 <VerticalStackLayout Spacing="8">
-                    <Label Text="⚠️ Allergy Info"
-                           FontSize="13"
+                    <Label Text="⚠️ Allergy Information"
+                           FontSize="14"
                            FontAttributes="Bold"
-                           TextColor="{StaticResource AccentColor}" />
+                           TextColor="{StaticResource Warning}" />
                     <Label x:Name="AllergyLabel"
                            FontSize="12"
-                           TextColor="{AppThemeBinding Light=#6C757D, Dark=#ADB5BD}" />
+                           TextColor="{AppThemeBinding Light=#E76F51, Dark=#F4A261}" />
                 </VerticalStackLayout>
+            </Border>
 
-                <!-- Action Buttons -->
-                <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="0,12,0,0">
-                    <Button Text="🔊 Read"
-                            BackgroundColor="{StaticResource PrimaryColor}"
-                            TextColor="#FFFFFF"
-                            CornerRadius="25"
-                            HeightRequest="44"
-                            Clicked="OnSpeakClicked" />
-                    <Button Grid.Column="1"
-                            Text="⏹️ Stop"
-                            BackgroundColor="{AppThemeBinding Light=#F8F9FA, Dark=#1E1E2E}"
-                            TextColor="{StaticResource PrimaryColor}"
-                            BorderWidth="1"
-                            BorderColor="{StaticResource PrimaryColor}"
-                            CornerRadius="25"
-                            HeightRequest="44"
-                            Clicked="OnStopSpeechClicked" />
-                </Grid>
-
-                <Button Text="📳 Vibrate"
-                        BackgroundColor="{AppThemeBinding Light=#F8F9FA, Dark=#1E1E2E}"
-                        TextColor="{StaticResource AccentColor}"
-                        BorderWidth="1"
-                        BorderColor="{StaticResource AccentColor}"
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="20,0,20,20">
+                <Button Text="🔊 Read"
+                        BackgroundColor="{StaticResource PrimaryGreen}"
+                        TextColor="#FFFFFF"
                         CornerRadius="25"
-                        HeightRequest="44"
-                        Clicked="OnVibrateClicked" />
-            </VerticalStackLayout>
+                        HeightRequest="48"
+                        Clicked="OnSpeakClicked" />
+                <Button Grid.Column="1"
+                        Text="⏹️ Stop"
+                        BackgroundColor="{AppThemeBinding Light=#E8F5E9, Dark=#1B2D3C}"
+                        TextColor="{StaticResource PrimaryGreen}"
+                        BorderWidth="1"
+                        BorderColor="{StaticResource PrimaryGreen}"
+                        CornerRadius="25"
+                        HeightRequest="48"
+                        Clicked="OnStopSpeechClicked" />
+            </Grid>
+
+            <Button Text="📳 Vibrate"
+                    BackgroundColor="{AppThemeBinding Light=#F8F9FA, Dark=#1B2D3C}"
+                    TextColor="{StaticResource Warning}"
+                    BorderWidth="1"
+                    BorderColor="{StaticResource Warning}"
+                    CornerRadius="25"
+                    HeightRequest="48"
+                    Margin="20,0,20,40"
+                    Clicked="OnVibrateClicked" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

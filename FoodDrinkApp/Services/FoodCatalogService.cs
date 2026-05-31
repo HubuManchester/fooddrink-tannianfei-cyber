@@ -20,51 +20,259 @@ public static class FoodCatalogService
     [
         new()
         {
-            Name = "Berry Yogurt Bowl",
+            Name = "Avocado Toast",
             Category = "Breakfast",
-            Description = "Greek yogurt with mixed berries, oats, and a small drizzle of honey.",
-            Calories = 340,
-            Protein = 24,
-            Carbs = 42,
-            Fat = 8,
-            AllergyNote = "Contains dairy and gluten.",
-            Tags = "healthy breakfast yogurt berries"
-        },
-        new()
-        {
-            Name = "Chicken Brown Rice Box",
-            Category = "Lunch",
-            Description = "Grilled chicken breast with brown rice, spinach, cucumber, and lemon dressing.",
-            Calories = 520,
-            Protein = 38,
-            Carbs = 58,
-            Fat = 14,
-            AllergyNote = "No common allergens recorded.",
-            Tags = "meal prep protein lunch"
-        },
-        new()
-        {
-            Name = "Iced Matcha Latte",
-            Category = "Drink",
-            Description = "Matcha, milk, and ice. A lower-sugar version is recommended.",
-            Calories = 180,
-            Protein = 8,
-            Carbs = 22,
-            Fat = 6,
-            AllergyNote = "Contains dairy unless plant-based milk is selected.",
-            Tags = "drink caffeine matcha latte"
-        },
-        new()
-        {
-            Name = "Tomato Wholegrain Pasta",
-            Category = "Dinner",
-            Description = "Wholegrain pasta with tomato sauce, basil, and roasted vegetables.",
-            Calories = 610,
-            Protein = 18,
-            Carbs = 92,
-            Fat = 16,
+            Description = "Sourdough toast topped with mashed avocado, cherry tomatoes, and chia seeds.",
+            Calories = 385,
+            Protein = 12,
+            Carbs = 38,
+            Fat = 22,
+            Fiber = 10,
+            Sugar = 3,
+            Sodium = 320,
+            VitaminC = 8,
             AllergyNote = "Contains gluten.",
-            Tags = "vegetarian dinner pasta"
+            Tags = "avocado toast breakfast healthy"
+        },
+        new()
+        {
+            Name = "Quinoa Buddha Bowl",
+            Category = "Lunch",
+            Description = "Quinoa base with roasted sweet potato, chickpeas, kale, and tahini dressing.",
+            Calories = 455,
+            Protein = 15,
+            Carbs = 62,
+            Fat = 16,
+            Fiber = 12,
+            Sugar = 8,
+            Sodium = 480,
+            VitaminC = 25,
+            AllergyNote = "No common allergens. Contains sesame.",
+            Tags = "quinoa buddha bowl vegan lunch"
+        },
+        new()
+        {
+            Name = "Salmon with Asparagus",
+            Category = "Dinner",
+            Description = "Grilled wild salmon served with roasted asparagus and lemon butter sauce.",
+            Calories = 520,
+            Protein = 42,
+            Carbs = 18,
+            Fat = 32,
+            Fiber = 6,
+            Sugar = 4,
+            Sodium = 210,
+            VitaminC = 15,
+            AllergyNote = "Contains fish. Dairy in sauce.",
+            Tags = "salmon asparagus dinner protein"
+        },
+        new()
+        {
+            Name = "Green Smoothie Bowl",
+            Category = "Breakfast",
+            Description = "Blended spinach, banana, mango, topped with granola and coconut flakes.",
+            Calories = 310,
+            Protein = 8,
+            Carbs = 58,
+            Fat = 9,
+            Fiber = 11,
+            Sugar = 28,
+            Sodium = 95,
+            VitaminC = 45,
+            AllergyNote = "Contains coconut.",
+            Tags = "smoothie bowl green breakfast"
+        },
+        new()
+        {
+            Name = "Mediterranean Wrap",
+            Category = "Lunch",
+            Description = "Whole wheat wrap with hummus, falafel, cucumber, tomato, and feta cheese.",
+            Calories = 490,
+            Protein = 18,
+            Carbs = 64,
+            Fat = 19,
+            Fiber = 14,
+            Sugar = 7,
+            Sodium = 720,
+            VitaminC = 12,
+            AllergyNote = "Contains gluten and dairy.",
+            Tags = "mediterranean wrap falafel lunch"
+        },
+        new()
+        {
+            Name = "Mushroom Risotto",
+            Category = "Dinner",
+            Description = "Creamy arborio rice with wild mushrooms, parmesan, and fresh parsley.",
+            Calories = 580,
+            Protein = 16,
+            Carbs = 88,
+            Fat = 18,
+            Fiber = 6,
+            Sugar = 5,
+            Sodium = 650,
+            VitaminC = 4,
+            AllergyNote = "Contains dairy. Contains gluten.",
+            Tags = "risotto mushroom dinner vegetarian"
+        },
+        new()
+        {
+            Name = "Matcha Protein Shake",
+            Category = "Drink",
+            Description = "Matcha green tea powder blended with oat milk and vanilla protein powder.",
+            Calories = 210,
+            Protein = 24,
+            Carbs = 22,
+            Fat = 5,
+            Fiber = 4,
+            Sugar = 12,
+            Sodium = 180,
+            VitaminC = 2,
+            AllergyNote = "Contains soy in protein powder.",
+            Tags = "matcha protein shake drink"
+        },
+        new()
+        {
+            Name = "Apple Cinnamon Oatmeal",
+            Category = "Breakfast",
+            Description = "Rolled oats cooked with diced apple, cinnamon, and a drizzle of maple syrup.",
+            Calories = 290,
+            Protein = 9,
+            Carbs = 54,
+            Fat = 5,
+            Fiber = 8,
+            Sugar = 18,
+            Sodium = 85,
+            VitaminC = 6,
+            AllergyNote = "Naturally gluten-free if certified oats used.",
+            Tags = "oatmeal apple cinnamon breakfast"
+        },
+        new()
+        {
+            Name = "Thai Coconut Curry",
+            Category = "Dinner",
+            Description = "Coconut milk based curry with tofu, bell peppers, bamboo shoots, and Thai basil.",
+            Calories = 465,
+            Protein = 14,
+            Carbs = 38,
+            Fat = 28,
+            Fiber = 7,
+            Sugar = 12,
+            Sodium = 890,
+            VitaminC = 35,
+            AllergyNote = "Contains coconut. Contains soy.",
+            Tags = "thai curry coconut dinner vegan"
+        },
+        new()
+        {
+            Name = "Tuna Salad Lettuce Wrap",
+            Category = "Lunch",
+            Description = "Albacore tuna mixed with Greek yogurt, celery, wrapped in butter lettuce.",
+            Calories = 245,
+            Protein = 28,
+            Carbs = 8,
+            Fat = 12,
+            Fiber = 3,
+            Sugar = 3,
+            Sodium = 410,
+            VitaminC = 5,
+            AllergyNote = "Contains fish. Contains dairy.",
+            Tags = "tuna salad lettuce wrap lowcarb lunch"
+        },
+        new()
+        {
+            Name = "Dark Chocolate Banana Smoothie",
+            Category = "Drink",
+            Description = "Frozen banana, cocoa powder, almond milk, and a touch of honey.",
+            Calories = 260,
+            Protein = 6,
+            Carbs = 48,
+            Fat = 7,
+            Fiber = 9,
+            Sugar = 28,
+            Sodium = 55,
+            VitaminC = 12,
+            AllergyNote = "Contains tree nuts (almond milk).",
+            Tags = "chocolate banana smoothie drink"
+        },
+        new()
+        {
+            Name = "Zucchini Noodle Pesto",
+            Category = "Dinner",
+            Description = "Spiralized zucchini tossed in basil pesto with cherry tomatoes and pine nuts.",
+            Calories = 310,
+            Protein = 8,
+            Carbs = 18,
+            Fat = 24,
+            Fiber = 6,
+            Sugar = 8,
+            Sodium = 380,
+            VitaminC = 28,
+            AllergyNote = "Contains tree nuts (pine nuts).",
+            Tags = "zoodles pesto lowcarb dinner"
+        },
+        new()
+        {
+            Name = "Blueberry Chia Pudding",
+            Category = "Breakfast",
+            Description = "Overnight chia seeds soaked in coconut milk, topped with fresh blueberries.",
+            Calories = 270,
+            Protein = 7,
+            Carbs = 32,
+            Fat = 14,
+            Fiber = 14,
+            Sugar = 16,
+            Sodium = 45,
+            VitaminC = 9,
+            AllergyNote = "Contains coconut.",
+            Tags = "chia pudding blueberry breakfast"
+        },
+        new()
+        {
+            Name = "Spicy Tuna Roll",
+            Category = "Lunch",
+            Description = "Sushi roll with tuna, avocado, cucumber, and spicy mayo.",
+            Calories = 340,
+            Protein = 20,
+            Carbs = 42,
+            Fat = 12,
+            Fiber = 4,
+            Sugar = 6,
+            Sodium = 520,
+            VitaminC = 3,
+            AllergyNote = "Contains fish. Contains gluten (soy sauce).",
+            Tags = "sushi tuna roll lunch"
+        },
+        new()
+        {
+            Name = "Kombucha",
+            Category = "Drink",
+            Description = "Fermented tea beverage with probiotics and natural fruit flavors.",
+            Calories = 45,
+            Protein = 0,
+            Carbs = 11,
+            Fat = 0,
+            Fiber = 0,
+            Sugar = 9,
+            Sodium = 8,
+            VitaminC = 1,
+            AllergyNote = "No common allergens.",
+            Tags = "kombucha probiotic drink"
+        },
+        new()
+        {
+            Name = "Sweet Potato Chickpea Bowl",
+            Category = "Dinner",
+            Description = "Roasted sweet potato, chickpeas, spinach, and tahini-maple dressing.",
+            Calories = 425,
+            Protein = 13,
+            Carbs = 68,
+            Fat = 14,
+            Fiber = 16,
+            Sugar = 18,
+            Sodium = 350,
+            VitaminC = 22,
+            AllergyNote = "Contains sesame.",
+            Tags = "sweet potato chickpea vegan dinner"
         }
     ];
 
@@ -109,7 +317,6 @@ public static class FoodCatalogService
             }
             catch
             {
-                // Fall back to the last loaded cache below.
             }
         }
 
@@ -155,7 +362,6 @@ public static class FoodCatalogService
         }
         catch
         {
-            // Keep the app usable during demos even if the network is unavailable.
         }
 
         LastLoadUsedMockApi = false;

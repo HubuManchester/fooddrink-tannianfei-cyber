@@ -3,138 +3,115 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:FoodDrinkApp.Models"
              x:Class="FoodDrinkApp.MainPage"
-             Title="Home"
-             BackgroundColor="{AppThemeBinding Light=#F8F9FA, Dark=#0D0D0D}">
-
-    <ContentPage.Resources>
-        <Color x:Key="PrimaryColor">#7B2CBF</Color>
-        <Color x:Key="SecondaryColor">#9D4EDD</Color>
-        <Color x:Key="AccentColor">#FF6B6B</Color>
-        <Color x:Key="CardBgLight">#FFFFFF</Color>
-        <Color x:Key="CardBgDark">#1E1E2E</Color>
-    </ContentPage.Resources>
+             Title="Log"
+             BackgroundColor="{AppThemeBinding Light=#F4FAF5, Dark=#0D1B2A}">
 
     <Grid RowDefinitions="Auto,Auto,*">
 
-        <!-- Header Section -->
-        <VerticalStackLayout Padding="20,16,20,8" Spacing="4"
-                             BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#121212}">
-            <Label Text="Hello!"
-                   FontSize="28"
+        <VerticalStackLayout Padding="20,20,20,8" Spacing="2"
+                             BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1B2D3C}">
+            <Label Text="VitaLog"
+                   FontSize="32"
                    FontAttributes="Bold"
-                   TextColor="{StaticResource PrimaryColor}" />
-            <Label Text="Track your daily nutrition"
+                   TextColor="{AppThemeBinding Light=#2D6A4F, Dark=#95D5B2}" />
+            <Label Text="Track what you eat"
                    FontSize="14"
-                   TextColor="{AppThemeBinding Light=#6C757D, Dark=#ADB5BD}" />
+                   TextColor="{AppThemeBinding Light=#6C757D, Dark=#A8DADC}" />
         </VerticalStackLayout>
 
-        <!-- Search Bar Section -->
-        <Grid Grid.Row="1" Padding="16,0,16,12" ColumnDefinitions="*,Auto" ColumnSpacing="12">
-            <Border StrokeThickness="1"
-                    Stroke="{AppThemeBinding Light=#E9ECEF, Dark=#2C2C3A}"
-                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E2E}"
+        <Grid Grid.Row="1" Padding="16,0,16,12" ColumnDefinitions="*,Auto" ColumnSpacing="10">
+            <Border StrokeThickness="0"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1B2D3C}"
                     Padding="0">
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="25" />
+                    <RoundRectangle CornerRadius="30" />
                 </Border.StrokeShape>
                 <SearchBar x:Name="SearchFoodBar"
-                           Placeholder="Find food or drink..."
+                           Placeholder="Search meals..."
                            TextChanged="OnSearchTextChanged"
                            SearchButtonPressed="OnSearchButtonPressed"
-                           TextColor="{AppThemeBinding Light=#212529, Dark=#F8F9FA}"
-                           PlaceholderColor="{AppThemeBinding Light=#ADB5BD, Dark=#6C757D}"
-                           BackgroundColor="Transparent"
-                           CancelButtonColor="{StaticResource PrimaryColor}" />
+                           TextColor="{AppThemeBinding Light=#1B4332, Dark=#F8F9FA}"
+                           PlaceholderColor="{AppThemeBinding Light=#A8DADC, Dark=#6C757D}"
+                           BackgroundColor="Transparent" />
             </Border>
 
             <Button Grid.Column="1"
                     Text="+"
-                    BackgroundColor="{StaticResource PrimaryColor}"
+                    BackgroundColor="#2D6A4F"
                     TextColor="#FFFFFF"
-                    FontSize="22"
-                    WidthRequest="48"
-                    HeightRequest="48"
-                    CornerRadius="24"
-                    Clicked="OnAddClicked"
-                    SemanticProperties.Hint="Add new item" />
+                    FontSize="24"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    Clicked="OnAddClicked" />
         </Grid>
 
-        <!-- Food List Section -->
         <RefreshView Grid.Row="2" x:Name="FoodRefreshView" Refreshing="OnRefreshing"
-                     BackgroundColor="{AppThemeBinding Light=#F8F9FA, Dark=#0D0D0D}">
+                     BackgroundColor="{AppThemeBinding Light=#F4FAF5, Dark=#0D1B2A}">
             <CollectionView x:Name="FoodCollection"
                             SelectionMode="None"
-                            EmptyView="No matching records"
-                            Margin="12,0,12,16">
+                            EmptyView="No meals found"
+                            Margin="12">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="12" HorizontalItemSpacing="12" />
+                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:FoodItem">
-                        <Grid Padding="0,0,0,10">
-                            <Border StrokeThickness="1"
-                                    Stroke="{AppThemeBinding Light=#E9ECEF, Dark=#2C2C3A}"
-                                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E1E2E}"
-                                    Padding="14">
-                                <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="12" />
-                                </Border.StrokeShape>
+                        <Border StrokeThickness="0"
+                                BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1B2D3C}"
+                                Padding="0">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="16" />
+                            </Border.StrokeShape>
+                            <Border.Shadow>
+                                <Shadow Brush="#20000000" Offset="0,2" Radius="6" />
+                            </Border.Shadow>
 
-                                <Grid RowDefinitions="Auto,Auto,Auto,Auto"
-                                      ColumnDefinitions="*,Auto"
-                                      RowSpacing="8"
-                                      ColumnSpacing="12">
+                            <Grid RowDefinitions="Auto,*,Auto" RowSpacing="8">
 
+                                <Border HeightRequest="120"
+                                        BackgroundColor="#E8F5E9"
+                                        Padding="0">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="16,16,0,0" />
+                                    </Border.StrokeShape>
+                                    <Label Text="🍽️"
+                                           FontSize="48"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center" />
+                                </Border>
+
+                                <VerticalStackLayout Grid.Row="1" Padding="12,10,12,8" Spacing="6">
                                     <Label Text="{Binding Name}"
-                                           FontSize="17"
+                                           FontSize="15"
                                            FontAttributes="Bold"
-                                           TextColor="{AppThemeBinding Light=#212529, Dark=#F8F9FA}" />
-
-                                    <Label Grid.Column="1"
-                                           Text="{Binding CaloriesLabel}"
-                                           FontSize="16"
-                                           FontAttributes="Bold"
-                                           TextColor="{StaticResource AccentColor}" />
-
-                                    <Border Grid.Row="1"
-                                            Grid.ColumnSpan="2"
-                                            StrokeThickness="0"
-                                            BackgroundColor="{AppThemeBinding Light=#F0E6FF, Dark=#2D1B4E}"
-                                            Padding="8,4"
-                                            HorizontalOptions="Start">
-                                        <Border.StrokeShape>
-                                            <RoundRectangle CornerRadius="6" />
-                                        </Border.StrokeShape>
-                                        <Label Text="{Binding Category}"
-                                               FontSize="11"
-                                               TextColor="{StaticResource PrimaryColor}" />
-                                    </Border>
-
-                                    <Label Grid.Row="2"
-                                           Grid.ColumnSpan="2"
-                                           Text="{Binding Description}"
-                                           FontSize="12"
-                                           TextColor="{AppThemeBinding Light=#6C757D, Dark=#ADB5BD}"
-                                           LineBreakMode="TailTruncation"
-                                           MaxLines="2" />
-
-                                    <Label Grid.Row="3"
-                                           Text="{Binding MacroSummary}"
+                                           TextColor="{AppThemeBinding Light=#1B4332, Dark=#F8F9FA}"
+                                           LineBreakMode="TailTruncation" />
+                                    <Label Text="{Binding Category}"
                                            FontSize="11"
-                                           TextColor="{AppThemeBinding Light=#6C757D, Dark=#ADB5BD}" />
+                                           TextColor="#40916C" />
+                                    <Label Text="{Binding CaloriesLabel}"
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           TextColor="#2D6A4F" />
+                                    <Label Text="{Binding MacroSummary}"
+                                           FontSize="10"
+                                           TextColor="{AppThemeBinding Light=#6C757D, Dark=#A8DADC}"
+                                           LineBreakMode="TailTruncation" />
+                                </VerticalStackLayout>
 
-                                    <Button Grid.Row="3"
-                                            Grid.Column="1"
-                                            Text="View"
-                                            Padding="16,6"
-                                            BackgroundColor="Transparent"
-                                            TextColor="{StaticResource PrimaryColor}"
-                                            FontSize="13"
-                                            CommandParameter="{Binding Id}"
-                                            Clicked="OnDetailsClicked"
-                                            BorderWidth="1"
-                                            BorderColor="{StaticResource PrimaryColor}"
-                                            CornerRadius="20" />
-                                </Grid>
-                            </Border>
-                        </Grid>
+                                <Button Grid.Row="2"
+                                        Text="View"
+                                        BackgroundColor="Transparent"
+                                        TextColor="#2D6A4F"
+                                        FontSize="12"
+                                        CornerRadius="0"
+                                        HeightRequest="40"
+                                        CommandParameter="{Binding Id}"
+                                        Clicked="OnDetailsClicked"
+                                        Margin="12,0,12,8" />
+                            </Grid>
+                        </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

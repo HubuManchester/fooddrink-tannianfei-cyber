@@ -28,6 +28,18 @@ public sealed class FoodItem
     [JsonPropertyName("fat")]
     public int Fat { get; set; }
 
+    [JsonPropertyName("fiber")]
+    public int Fiber { get; set; }
+
+    [JsonPropertyName("sugar")]
+    public int Sugar { get; set; }
+
+    [JsonPropertyName("sodium")]
+    public int Sodium { get; set; }
+
+    [JsonPropertyName("vitaminC")]
+    public int VitaminC { get; set; }
+
     [JsonPropertyName("allergyNote")]
     public string AllergyNote { get; set; } = string.Empty;
 
@@ -38,8 +50,11 @@ public sealed class FoodItem
     public string CaloriesLabel => $"{Calories} kcal";
 
     [JsonIgnore]
-    public string MacroSummary => $"Protein {Protein}g, carbs {Carbs}g, fat {Fat}g";
+    public string MacroSummary => $"P {Protein}g ¡¤ C {Carbs}g ¡¤ F {Fat}g ¡¤ Fib {Fiber}g";
 
     [JsonIgnore]
-    public string AccessibleSummary => $"{Name}. {Category}. {Calories} kcal. {MacroSummary}. {AllergyNote}";
+    public string FullNutritionSummary => $"Protein {Protein}g, Carbs {Carbs}g, Fat {Fat}g, Fiber {Fiber}g, Sugar {Sugar}g, Sodium {Sodium}mg, Vitamin C {VitaminC}mg";
+
+    [JsonIgnore]
+    public string AccessibleSummary => $"{Name}. {Category}. {Calories} calories. {FullNutritionSummary}. {AllergyNote}";
 }
